@@ -1,0 +1,38 @@
+
+N = 4
+
+
+peg_A = list(range(N, 0, -1)) 
+peg_B = []
+peg_C = []
+
+
+pegs = [peg_A, peg_B, peg_C]
+
+
+
+def display(pegs):
+    print("A:", pegs[0])
+    print("B:", pegs[1])
+    print("C:", pegs[2])
+    print("-" * 20)
+
+
+def hanoi_visual(n, source, auxiliary, destination):
+    src = pegs[source]
+    aux = pegs[auxiliary]
+    dest = pegs[destination]
+    
+    if n == 1:
+        dest.append(src.pop())
+        display(pegs)
+        return
+    hanoi_visual(n-1, source, destination, auxiliary)
+    dest.append(src.pop())
+    display(pegs)
+    hanoi_visual(n-1, auxiliary, source, destination)
+
+
+
+display(pegs) 
+hanoi_visual(N, 0, 1, 2) 
